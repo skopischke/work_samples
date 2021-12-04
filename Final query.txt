@@ -1,5 +1,5 @@
 /*To start, create table structure for add-on data
-utilizing decimal as the data type https://www.postgresql.org/docs/13/datatype-numeric.html#DATATYPE-FLOAT*/
+utilizing decimal as the data type*/
 CREATE table public.survey_response(
 	customer_id varchar(10),
 	timely_responses decimal,
@@ -16,8 +16,7 @@ ALTER TABLE survey_response
 	ADD CONSTRAINT customer_id
 	FOREIGN KEY (customer_id) REFERENCES customer(customer_id);
 
-/*Import CSV file add-on data.
-Citation used for this process is https://www.postgresqltutorial.com/import-csv-file-into-posgresql-table/*/
+--Import CSV file add-on data.
 COPY survey_response(
 	customer_id,
 	timely_responses,
@@ -69,8 +68,7 @@ CREATE VIEW top_20_fam AS
 		ORDER BY county_sat_score DESC
 		LIMIT 20;
 
-/*export view to CSV file
-Citation https://www.kompulsa.com/export-view-csv-postgresql/*/
+--export view to CSV file
 COPY (
 	SELECT * 
 	FROM top_20_fam) 
